@@ -4,17 +4,17 @@ const cards = [
     {
         title: 'Misión',
         description:
-            'Acompañar a empresas y emprendedores en su transformación digital construyendo productos web confiables y escalables.',
+            'Entregar productos web que resuelvan problemas reales — sin sobre-ingeniería, sin código inflado, sin sorpresas al final del proyecto.',
     },
     {
         title: 'Visión',
         description:
-            'Ser la consultora de referencia en desarrollo web, reconocida por la calidad técnica y el compromiso con cada proyecto.',
+            'Ser el equipo técnico de confianza de empresas que valoran la calidad, la comunicación honesta y el resultado por encima del proceso.',
     },
     {
         title: 'Equipo',
         description:
-            'Desarrolladores full-stack, diseñadores y consultores que combinan experiencia técnica con visión de negocio.',
+            'Un grupo de 2 a 3 desarrolladores full-stack por proyecto. Quien te atiende, quien diseña y quien construye son las mismas personas.',
     },
 ];
 
@@ -30,10 +30,11 @@ const About = () => {
             <div className="container">
                 <div className="section-heading">
                     <span className="eyebrow">Acerca</span>
-                    <h2>Una agencia con mentalidad de producto.</h2>
+                    <h2>Un equipo pequeño. Un compromiso grande.</h2>
                     <p className="about-intro">
-                        No solo escribimos código: pensamos en el negocio, en
-                        los usuarios y en el largo plazo de cada decisión técnica.
+                        Cuando trabajás con W.E.F.E, hablás directamente con las
+                        personas que van a construir tu producto. Sin intermediarios,
+                        sin mensajes perdidos, sin sorpresas.
                     </p>
                 </div>
 

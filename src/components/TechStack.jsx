@@ -2,15 +2,16 @@ import { useReveal } from '../hooks/useReveal';
 
 const techs = [
     'React',
-    'Next.js',
-    'Node.js',
-    'TypeScript',
+    'Laravel',
+    'Tailwind CSS',
+    'Bootstrap 5',
+    'Flutter',
+    'Java 21',
     'PostgreSQL',
-    'AWS',
-    'Tailwind',
-    'Vercel',
-    'GraphQL',
-    'Docker',
+    'MySQL',
+    'MongoDB',
+    'MariaDB',
+    'Figma',
 ];
 
 const TechStack = () => {

@@ -9,7 +9,7 @@ const Hero = () => {
                 <div className="grid-12">
                     <div className={`hero-content col-span-7 reveal${isVisible ? ' is-visible' : ''}`}>
                         <span className="eyebrow hero-eyebrow">
-                            Consultora de desarrollo web
+                            Agencia de desarrollo web · LATAM
                         </span>
                         <h1 className="hero-title">
                             Construimos <span className="accent">software</span>
@@ -17,9 +17,9 @@ const Hero = () => {
                             que tus clientes <span className="stroke">recordarán.</span>
                         </h1>
                         <p className="hero-subtitle">
-                            Diseñamos y desarrollamos productos web a medida —
-                            rápidos, accesibles y escalables — para equipos que se
-                            toman su tecnología en serio.
+                            Somos un equipo pequeño y dedicado. Sin capas de gestión,
+                            sin juniors delegados — hablás directamente con quien
+                            construye tu producto, desde el día uno.
                         </p>
                         <div className="hero-ctas">
                             <a href="#contacto" className="btn-primary">
@@ -31,7 +31,7 @@ const Hero = () => {
                             </a>
                         </div>
                         <span className="hero-badge">
-                            Disponible para nuevos proyectos · Q3 2026
+                            Disponible para proyectos nuevos · Hablemos esta semana
                         </span>
                     </div>
 
@@ -45,9 +45,9 @@ const Hero = () => {
                             <small>Capítulo / Inicio</small>
                         </div>
                         <blockquote className="hero-pull">
-                            <strong>Sitios y apps</strong>
-                            entregados a startups y empresas establecidas
-                            en los últimos 2 años.
+                            <strong>Tu proyecto no es un ticket.</strong>
+                            Es el trabajo más importante que tenemos —
+                            y lo tratamos como tal.
                         </blockquote>
                     </aside>
                 </div>

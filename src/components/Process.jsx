@@ -41,8 +41,8 @@ const Process = () => {
                     <span className="eyebrow">Proceso</span>
                     <h2>Cómo trabajamos contigo.</h2>
                     <p>
-                        Un proceso probado en docenas de proyectos: claro, predecible
-                        y enfocado en resultados.
+                        Un proceso claro y predecible, con comunicación constante
+                        y entregas que podés ver desde la primera semana.
                     </p>
                 </div>
                 <div className="grid-12">

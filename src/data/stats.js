@@ -3,24 +3,24 @@ const metrics = [
     {
         value: '3',
         label: 'Proyectos entregados',
-        description: 'Sitios, apps y plataformas web completados',
+        description: 'Cada uno tratado como el más importante que tenemos',
     },
     {
         value: '100',
         unit: '%',
-        label: 'Satisfacción de clientes',
-        description: 'Todos nuestros clientes recomiendan nuestro trabajo',
+        label: 'Clientes satisfechos',
+        description: 'Todos volvieron a trabajar con nosotros o nos recomendaron',
     },
     {
         value: '11',
         label: 'Tecnologías dominadas',
-        description: 'React, Tailwind, Flutter, Java 21, Laravel, PrimeFaces, Mongo, Postgres, MariaDB, BigQuery, Figma',
+        description: 'React, Flutter, Java 21, Laravel, Postgres y más',
     },
     {
         value: '24',
         unit: 'h',
         label: 'Tiempo de respuesta',
-        description: 'Respondemos en menos de un día hábil',
+        description: 'Comunicación directa con quien construye tu producto',
     },
 ];
 
