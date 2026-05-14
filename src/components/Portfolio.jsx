@@ -3,45 +3,30 @@ import { useReveal } from '../hooks/useReveal';
 const projects = [
     {
         image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80',
-        title: 'Dashboard SaaS',
-        description: 'Panel analítico en tiempo real para una startup fintech.',
-        tags: ['React', 'TypeScript', 'PostgreSQL'],
+        client: 'Universidad Tecnológica de Acapulco',
+        title: 'Automatización Psicométrica',
+        description:
+            'Los estudiantes de la UTA completaban sus evaluaciones psicométricas en papel. Construimos el sistema que digitalizó todo el proceso: desde la aplicación del examen hasta la generación automática de resultados.',
+        tags: ['Laravel', 'Bootstrap 5', 'MySQL'],
         layout: 'col-span-7 aspect-16-10',
     },
     {
-        image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=900&q=80',
-        title: 'Tienda Online',
-        description: 'E-commerce con pasarela de pagos y panel de administración.',
-        tags: ['Next.js', 'Stripe', 'Tailwind'],
+        image: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=900&q=80',
+        client: 'BUAP',
+        title: 'Directorio de Investigadores',
+        description:
+            'Encontrar al asesor ideal para la tesis ya no dependía de preguntar de pasillo en pasillo. Creamos el portal donde los alumnos de la BUAP buscan investigadores por área, revisan sus publicaciones y eligen al docente que mejor encaja con su proyecto.',
+        tags: ['Laravel', 'Blade', 'Tailwind CSS', 'PostgreSQL'],
         layout: 'col-span-5 aspect-4-5',
     },
     {
-        image: 'https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=900&q=80',
-        title: 'Plataforma Educativa',
-        description: 'LMS con cursos en video y seguimiento de progreso.',
-        tags: ['React', 'Node.js', 'AWS'],
-        layout: 'col-span-5 aspect-1-1',
-    },
-    {
-        image: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200&q=80',
-        title: 'App Corporativa',
-        description: 'Intranet para gestión de proyectos y comunicación interna.',
-        tags: ['Vue', 'Firebase'],
-        layout: 'col-span-7 aspect-4-3',
-    },
-    {
-        image: 'https://images.unsplash.com/photo-1483058712412-4245e9b90334?auto=format&fit=crop&w=1200&q=80',
-        title: 'Landing Page',
-        description: 'Sitio promocional optimizado para SEO y velocidad.',
-        tags: ['Astro', 'Tailwind'],
-        layout: 'col-span-7 aspect-3-4',
-    },
-    {
-        image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=900&q=80',
-        title: 'API REST',
-        description: 'Microservicio escalable con documentación interactiva.',
-        tags: ['Node.js', 'Express', 'Swagger'],
-        layout: 'col-span-5 aspect-16-9',
+        image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80',
+        client: 'Gobierno del Estado de Puebla',
+        title: 'Gestor de Contenido Gubernamental',
+        description:
+            'Detrás de la app turística oficial del Gobierno de Puebla hay un panel que construimos nosotros. Desde ahí, el equipo del gobierno publica hoteles, restaurantes, festivales y sitios emblemáticos de los Pueblos Mágicos — con imágenes — sin tocar una sola línea de código.',
+        tags: ['React', 'Laravel', 'PostgreSQL'],
+        layout: 'col-span-12 aspect-4-3',
     },
 ];
 
@@ -57,10 +42,10 @@ const Portfolio = () => {
             <div className="container">
                 <div className="section-heading">
                     <span className="eyebrow">Portafolio</span>
-                    <h2>Trabajo seleccionado.</h2>
+                    <h2>Nuestro trabajo.</h2>
                     <p>
-                        Una muestra de proyectos donde combinamos diseño,
-                        ingeniería y producto para entregar resultados medibles.
+                        Tres proyectos reales, entregados con dedicación total.
+                        Cada uno refleja cómo trabajamos — con cuidado en cada detalle.
                     </p>
                 </div>
                 <div className="grid-12">
@@ -74,6 +59,7 @@ const Portfolio = () => {
                         >
                             <img src={project.image} alt={project.title} loading="lazy" />
                             <div className="portfolio-card-info">
+                                <span className="portfolio-client">{project.client}</span>
                                 <h3>{project.title}</h3>
                                 <p>{project.description}</p>
                                 <div className="portfolio-tags">

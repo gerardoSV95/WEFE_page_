@@ -557,6 +557,17 @@ p {
   font-size: 0.95rem;
   color: rgba(255, 255, 255, 0.7);
 }
+.stat-icon {
+  display: block;
+  font-size: 1.75rem;
+  margin-bottom: 0.75rem;
+}
+.stat-description {
+  margin-top: 0.4rem;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.45);
+  line-height: 1.4;
+}
 
 @media (max-width: 767px) {
   .stats .grid-12 {
@@ -753,6 +764,15 @@ p {
 }
 .portfolio-card:hover .portfolio-card-info {
   opacity: 1;
+}
+.portfolio-client {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--first-color);
+  margin-bottom: 0.4rem;
 }
 .portfolio-card-info h3 {
   color: var(--white-color);
