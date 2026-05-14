@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { useReveal } from '../hooks/useReveal';
 
-const CONTACT_ENDPOINT = 'https://formsubmit.co/ajax/your@email.com';
+const CONTACT_RECIPIENT = import.meta.env.VITE_CONTACT_RECIPIENT || 'your@email.com';
+const CONTACT_ENDPOINT = `https://formsubmit.co/ajax/${CONTACT_RECIPIENT}`;
 
 const INITIAL_FORM = {
     name: '',
