@@ -1,0 +1,43 @@
+schema: spec-driven
+
+context: |
+  ## Source of truth
+
+  `docs/base-standards.md` is the single source of truth for this repository.
+  All other docs build on it — when in doubt, defer to base-standards.
+
+  ## Reference docs (paths relative to project root)
+
+  Standards (read before proposing/applying changes):
+  - docs/base-standards.md            — foundational rules (overrides everything else)
+  - docs/backend-standards.md         — server-side conventions
+  - docs/frontend-standards.md        — UI conventions
+  - docs/documentation-standards.md   — how to write docs and specs
+
+  Contracts & data:
+  - docs/api-spec.yml                 — OpenAPI contract for backend endpoints
+  - docs/data-model.md                — canonical data model and entities
+
+  ## Agent profiles
+
+  When the work is primarily backend (APIs, services, data access, business
+  logic), adopt the role and rules in `ai-specs/agents/backend-developer.md`.
+
+  When the work is primarily frontend (React components, styling, client-side
+  state, accessibility), adopt the role and rules in
+  `ai-specs/agents/frontend-developer.md`.
+
+  ## Workflow guidance
+
+  Reusable workflows, checklists, and recipes live in `ai-specs/skills/`.
+  Consult them when a task matches an existing skill before improvising.
+
+# Per-artifact rules (optional)
+# Add custom rules for specific artifacts.
+# Example:
+#   rules:
+#     proposal:
+#       - Keep proposals under 500 words
+#       - Always include a "Non-goals" section
+#     tasks:
+#       - Break tasks into chunks of max 2 hours

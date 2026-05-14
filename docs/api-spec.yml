@@ -1,0 +1,130 @@
+openapi: 3.1.0
+info:
+  title: W.E.F.E external integrations
+  version: 0.1.0
+  description: |
+    This repository contains a static frontend with no first-party backend.
+    The single endpoint described here is the third-party submission endpoint
+    used by `src/components/Contact.jsx`.
+
+    When a first-party backend is introduced, new operations are added to this
+    document in the same OpenSpec change that introduces them.
+
+servers:
+  - url: https://formsubmit.co
+    description: Third-party form relay (ajax mode)
+
+paths:
+  /ajax/{recipient}:
+    post:
+      operationId: submitContactForm
+      summary: Submit a contact message to the configured recipient mailbox.
+      description: |
+        Posts the contact-form payload as `multipart/form-data`. The recipient
+        email is supplied as a path parameter and is configured at build time
+        via `VITE_CONTACT_RECIPIENT`. The current source-tree value
+        `your@email.com` is a placeholder and MUST be replaced before deploy.
+      parameters:
+        - in: path
+          name: recipient
+          required: true
+          schema:
+            type: string
+            format: email
+            example: hello@wefe.example
+          description: Mailbox that will receive the relayed message.
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/ContactSubmission"
+      responses:
+        "200":
+          description: Submission accepted by the relay.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ContactSubmissionAck"
+        "4XX":
+          description: Validation or client-side error from the relay.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Problem"
+        "5XX":
+          description: Relay-side failure.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Problem"
+
+components:
+  schemas:
+
+    ContactSubmission:
+      type: object
+      description: Fields collected by the public contact form.
+      required: [name, email, subject, message]
+      properties:
+        name:
+          type: string
+          minLength: 2
+          maxLength: 120
+          description: Full name of the sender.
+          example: Ana López
+        email:
+          type: string
+          format: email
+          description: Reply-to address.
+          example: ana@example.com
+        subject:
+          type: string
+          minLength: 2
+          maxLength: 200
+          description: Short subject line, Spanish copy.
+          example: Cotización para tienda online
+        message:
+          type: string
+          minLength: 10
+          maxLength: 5000
+          description: Free-text body of the inquiry.
+          example: |
+            Hola, me gustaría una propuesta para migrar mi e-commerce a
+            Next.js. ¿Podrían contactarme?
+
+    ContactSubmissionAck:
+      type: object
+      description: Successful acknowledgement returned by the relay.
+      required: [success]
+      properties:
+        success:
+          type: string
+          example: "true"
+        message:
+          type: string
+          example: The form was submitted successfully.
+
+    Problem:
+      type: object
+      description: Error envelope (RFC 7807 style; the third party may return a subset).
+      required: [status]
+      properties:
+        type:
+          type: string
+          format: uri
+          default: about:blank
+        title:
+          type: string
+          example: Validation failed
+        status:
+          type: integer
+          minimum: 400
+          maximum: 599
+          example: 422
+        detail:
+          type: string
+          example: The field "email" must be a valid email address.
+        instance:
+          type: string
+          format: uri-reference
