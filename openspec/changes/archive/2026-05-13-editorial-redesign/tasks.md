@@ -88,5 +88,5 @@
 - [x] 14.1 `npm run lint` sin errores
 - [x] 14.2 `npm run build` exitoso; bundle JS gzipped ≤ 70 KB y CSS gzipped ≤ 8 KB <!-- 64.82 KB JS / 5.96 KB CSS -->
 - [x] 14.3 `grep` por `class=` (sin `Name`) en `src/components/` no devuelve resultados (todos `className`)
-- [ ] 14.4 Verificación visual en `npm run dev`: navegación por todas las secciones, mobile menu, hover de service-cards y portfolio, animaciones de reveal, formulario funciona
-- [ ] 14.5 Toggle `prefers-reduced-motion` en DevTools: las secciones aparecen instantáneamente sin animación
+- [x] 14.4 Verificación visual en `npm run dev`: navegación por todas las secciones, mobile menu, hover de service-cards y portfolio, animaciones de reveal, formulario funciona
+- [x] 14.5 Toggle `prefers-reduced-motion` en DevTools: las secciones aparecen instantáneamente sin animación

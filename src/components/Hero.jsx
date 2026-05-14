@@ -45,9 +45,9 @@ const Hero = () => {
                             <small>Capítulo / Inicio</small>
                         </div>
                         <blockquote className="hero-pull">
-                            <strong>+50 productos</strong>
+                            <strong>Sitios y apps</strong>
                             entregados a startups y empresas establecidas
-                            en los últimos 12 años.
+                            en los últimos 2 años.
                         </blockquote>
                     </aside>
                 </div>
