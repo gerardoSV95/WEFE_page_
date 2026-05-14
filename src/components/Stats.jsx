@@ -1,13 +1,7 @@
 import { useReveal } from '../hooks/useReveal';
 
-const stats = [
-    { value: '+50', label: 'Proyectos entregados' },
-    { value: '12', unit: 'años', label: 'En el mercado' },
-    { value: '98', unit: '%', label: 'Retención de clientes' },
-    { value: '15', label: 'Industrias atendidas' },
-];
-
-const Stats = () => {
+// Usage: <Stats metrics={[{ value, label, unit?, icon?, description? }]} />
+const Stats = ({ metrics = [] }) => {
     const { ref, isVisible } = useReveal();
 
     return (
@@ -18,14 +12,26 @@ const Stats = () => {
         >
             <div className="container">
                 <div className="grid-12">
-                    {stats.map((stat) => (
-                        <div key={stat.label} className="stat col-span-3">
+                    {metrics.map((stat) => (
+                        <article
+                            key={stat.label}
+                            className="stat col-span-3"
+                            aria-label={`${stat.value}${stat.unit ? ' ' + stat.unit : ''} — ${stat.label}`}
+                        >
+                            {stat.icon && (
+                                <span className="stat-icon" aria-hidden="true">
+                                    {stat.icon}
+                                </span>
+                            )}
                             <div className="stat-value">
                                 {stat.value}
                                 {stat.unit && <span className="unit">{stat.unit}</span>}
                             </div>
                             <div className="stat-label">{stat.label}</div>
-                        </div>
+                            {stat.description && (
+                                <p className="stat-description">{stat.description}</p>
+                            )}
+                        </article>
                     ))}
                 </div>
             </div>

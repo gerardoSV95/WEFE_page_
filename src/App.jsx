@@ -2,6 +2,7 @@ import './App.css';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import Stats from './components/Stats';
+import metrics from './data/stats';
 import About from './components/About';
 import Services from './components/Services';
 import Process from './components/Process';
@@ -16,7 +17,7 @@ function App() {
             <Header />
             <main>
                 <Hero />
-                <Stats />
+                <Stats metrics={metrics} />
                 <About />
                 <Services />
                 <Process />
