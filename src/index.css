@@ -703,9 +703,13 @@ p {
   }
 }
 @media (min-width: 1024px) {
-  /* 5 cards en desktop con col-span-3 = 4 + 1. Centramos la huérfana. */
-  .services .grid-12 > .service-card:nth-child(5):last-child {
-    grid-column: 5 / span 4;
+  /* 5 cards en una sola fila en desktop. Sobrescribimos el grid de 12 cols
+     por uno de 5 cols iguales solo dentro de Services. */
+  .services .grid-12 {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+  .services .grid-12 > .service-card {
+    grid-column: auto;
   }
 }
 
