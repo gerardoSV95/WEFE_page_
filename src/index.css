@@ -1092,6 +1092,19 @@ p {
 .contact-info .social-media {
   margin-top: 0.5rem;
 }
+/* Override del .social-media global (pensado para el footer oscuro):
+   en Contact el fondo es blanco, así que invertimos los tonos
+   para que los iconos sean visibles sin necesidad de hover. */
+.contact-info .social-media a {
+  background-color: var(--gray-light-color);
+  color: var(--second-color);
+  border: 1px solid var(--gray-color);
+}
+.contact-info .social-media a:hover {
+  background-color: var(--first-color);
+  color: var(--white-color);
+  border-color: var(--first-color);
+}
 
 .contact-form {
   display: flex;
