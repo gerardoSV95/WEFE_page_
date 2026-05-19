@@ -19,7 +19,9 @@ const Header = () => {
         <header className="header">
             <div className="container">
                 <div className="logo">
-                    <a href="#inicio" onClick={closeMenu}>W.E.F.E</a>
+                    <a href="#inicio" onClick={closeMenu} aria-label="WEFE - Inicio">
+                        <img src="/logo-horizontal.png" alt="WEFE - Wireless Everywhere For Everyone" />
+                    </a>
                 </div>
                 <button
                     type="button"

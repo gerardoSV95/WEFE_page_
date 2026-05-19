@@ -31,7 +31,7 @@
 
   /* Layout */
   --max-width: 1200px;
-  --header-height: 4.5rem;
+  --header-height: 6rem;
   --space-section: clamp(4rem, 8vw, 8rem);
 
   /* Radii */
@@ -324,14 +324,30 @@ p {
 }
 
 .logo a {
-  color: var(--second-color);
-  font-weight: 900;
-  font-size: 1.5rem;
-  letter-spacing: -0.02em;
+  display: inline-flex;
+  align-items: center;
   text-decoration: none;
 }
-.logo a:hover {
-  color: var(--first-color);
+.logo a {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+.logo img {
+  height: 76px;
+  width: auto;
+  display: block;
+  padding: 8px 0;
+  transition: opacity 0.2s ease;
+}
+.logo a:hover img {
+  opacity: 0.85;
+}
+@media (max-width: 640px) {
+  .logo img {
+    height: 60px;
+    padding: 6px 0;
+  }
 }
 
 /* Mobile menu */
