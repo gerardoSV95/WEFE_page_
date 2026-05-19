@@ -8,15 +8,4 @@ export default defineConfig({
     react(),
     tailwindcss()
   ],
-  server: {
-    proxy: {
-      // Proxies /formsubmit/* → https://formsubmit.co/* during local dev.
-      // Avoids CORS since the request leaves from the Node process, not the browser.
-      '/formsubmit': {
-        target: 'https://formsubmit.co',
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/formsubmit/, ''),
-      },
-    },
-  },
 })
