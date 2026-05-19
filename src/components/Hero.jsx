@@ -12,9 +12,10 @@ const Hero = () => {
                             Agencia de desarrollo web · LATAM
                         </span>
                         <h1 className="hero-title">
-                            Construimos <span className="accent">software</span>
+                            Sistemas web <span className="accent">a medida</span>
                             <br />
-                            que tus clientes <span className="stroke">recordarán.</span>
+                            para empresas, universidades y{' '}
+                            <span className="stroke">gobierno.</span>
                         </h1>
                         <p className="hero-subtitle">
                             Hablas directamente con quien diseña y programa tu

@@ -2,19 +2,19 @@ import { useReveal } from '../hooks/useReveal';
 
 const cards = [
     {
-        title: 'Misión',
+        title: 'Hablas con quien construye',
         description:
-            'Entregar productos web que resuelvan problemas reales — sin sobre-ingeniería, sin código inflado, sin sorpresas al final del proyecto.',
+            'Sin PMs intermediando, sin cuentas, sin trabajo delegado a juniors. La persona que te cotiza es la misma que diseña, programa y te entrega. Comunicación directa por defecto.',
     },
     {
-        title: 'Visión',
+        title: 'Cotización cerrada, sin sorpresas',
         description:
-            'Ser el equipo técnico de confianza de empresas que valoran la calidad, la comunicación honesta y el resultado por encima del proceso.',
+            'Te entregamos el alcance por escrito antes de empezar. Si algo cambia en el camino, lo conversamos antes de cobrarlo. Nunca recibes una factura con un "extra" al final del proyecto.',
     },
     {
-        title: 'Equipo',
+        title: 'Entregas semanales, no slides',
         description:
-            'Un grupo de 2 a 3 desarrolladores full-stack por proyecto. Quien te atiende, quien diseña y quien construye son las mismas personas.',
+            'Cada semana ves el avance corriendo en un entorno real — no diapositivas con porcentajes. Si algo no encaja, lo corregimos antes de que se acumule en deuda técnica.',
     },
 ];
 
@@ -29,12 +29,12 @@ const About = () => {
         >
             <div className="container">
                 <div className="section-heading">
-                    <span className="eyebrow">Acerca</span>
-                    <h2>Un equipo pequeño. Un compromiso grande.</h2>
+                    <span className="eyebrow">Por qué nosotros</span>
+                    <h2>Tres compromisos que no negociamos.</h2>
                     <p className="about-intro">
-                        Cuando trabajas con W.E.F.E hablas directamente con las
-                        personas que van a construir tu producto. Sin
-                        intermediarios, sin mensajes perdidos, sin sorpresas.
+                        No son slogans — son las reglas con las que trabajamos
+                        en todos los proyectos, sin importar el tamaño. Si
+                        alguna no encaja contigo, mejor no empezar.
                     </p>
                 </div>
 
