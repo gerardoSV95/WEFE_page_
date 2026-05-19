@@ -2,8 +2,6 @@ import './App.css';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import ClientLogos from './components/ClientLogos';
-import Stats from './components/Stats';
-import metrics from './data/stats';
 import About from './components/About';
 import Services from './components/Services';
 import Process from './components/Process';
@@ -20,7 +18,6 @@ function App() {
             <main>
                 <Hero />
                 <ClientLogos />
-                <Stats metrics={metrics} />
                 <About />
                 <Services />
                 <Process />
