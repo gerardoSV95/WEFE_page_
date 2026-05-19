@@ -43,6 +43,11 @@ export default async function handler(req, res) {
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
                     Accept: 'application/json',
+                    // Identify the request origin so formsubmit.co can
+                    // associate the submission with the correct domain and
+                    // trigger the one-time activation email.
+                    Origin: 'https://wefe-page.vercel.app',
+                    Referer: 'https://wefe-page.vercel.app/',
                 },
                 body: params.toString(),
             },
