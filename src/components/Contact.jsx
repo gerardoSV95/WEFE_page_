@@ -3,7 +3,12 @@ import { useReveal } from '../hooks/useReveal';
 
 const CONTACT_RECIPIENT =
     import.meta.env.VITE_CONTACT_RECIPIENT || 'wefe.info@gmail.com';
-const CONTACT_ENDPOINT = `https://formsubmit.co/ajax/${CONTACT_RECIPIENT}`;
+// In local dev, route through the Vite proxy (/formsubmit → formsubmit.co)
+// so the browser never makes a cross-origin request and CORS is a non-issue.
+// In production the direct URL is used — Vite proxy doesn't exist there.
+const CONTACT_ENDPOINT = import.meta.env.DEV
+    ? `/formsubmit/ajax/${CONTACT_RECIPIENT}`
+    : `https://formsubmit.co/ajax/${CONTACT_RECIPIENT}`;
 
 const INITIAL_FORM = {
     name: '',
