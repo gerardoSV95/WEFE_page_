@@ -61,7 +61,16 @@ const Contact = () => {
 
             if (!res.ok) throw new Error(`Error ${res.status}`);
 
-            await res.json();
+            const data = await res.json();
+
+            // formsubmit.co first-time activation: the function returns 200
+            // but with activation: true when the email isn't confirmed yet.
+            if (data.activation) {
+                setResponse({ type: 'error', message: data.message });
+                setIsLoading(false);
+                return;
+            }
+
             setResponse({
                 type: 'success',
                 message:
