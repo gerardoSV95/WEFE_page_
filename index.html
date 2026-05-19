@@ -2,9 +2,97 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>W.E.F.E</title>
+    <meta name="theme-color" content="#0b1220" />
+
+    <!-- Identidad / SEO básico -->
+    <title>W.E.F.E — Agencia de desarrollo web a medida en LATAM</title>
+    <meta
+      name="description"
+      content="Agencia de desarrollo web a medida en LATAM. Construimos sistemas, apps móviles y e-commerce para empresas, universidades y gobierno. Equipo pequeño, atención directa."
+    />
+    <meta
+      name="keywords"
+      content="agencia desarrollo web, desarrollo web a medida, software a medida, apps móviles Flutter, e-commerce, Laravel, React, LATAM, México"
+    />
+    <meta name="author" content="W.E.F.E" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <link rel="canonical" href="https://wefe.vercel.app/" />
+
+    <!-- Favicon (origen: public/logo.png) -->
+    <link rel="icon" type="image/png" href="/logo.png" />
+    <link rel="apple-touch-icon" href="/logo.png" />
+
+    <!-- Open Graph (Facebook, WhatsApp, LinkedIn) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="W.E.F.E" />
+    <meta property="og:locale" content="es_MX" />
+    <meta property="og:url" content="https://wefe.vercel.app/" />
+    <meta
+      property="og:title"
+      content="W.E.F.E — Agencia de desarrollo web a medida en LATAM"
+    />
+    <meta
+      property="og:description"
+      content="Construimos sistemas, apps móviles y e-commerce a medida. Equipo pequeño, atención directa, sin intermediarios. Hablemos esta semana."
+    />
+    <meta property="og:image" content="https://wefe.vercel.app/logo.png" />
+    <meta
+      property="og:image:alt"
+      content="W.E.F.E — Agencia de desarrollo web a medida"
+    />
+    <!-- TODO: crear /og-image.png en 1200×630 con copy + logo y reemplazar
+         la referencia anterior. Hoy usamos logo.png cuadrado como fallback
+         para que el preview no quede roto en WhatsApp / LinkedIn / X. -->
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="W.E.F.E — Agencia de desarrollo web a medida en LATAM"
+    />
+    <meta
+      name="twitter:description"
+      content="Construimos sistemas, apps móviles y e-commerce a medida. Equipo pequeño, atención directa, sin intermediarios."
+    />
+    <meta name="twitter:image" content="https://wefe.vercel.app/logo.png" />
+
+    <!-- Preconnect a imágenes externas usadas en Portafolio (mejora LCP) -->
+    <link rel="preconnect" href="https://images.unsplash.com" crossorigin />
+
+    <!-- Datos estructurados: organización / servicio profesional -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "name": "W.E.F.E",
+        "alternateName": "Wireless Everywhere For Everyone",
+        "url": "https://wefe.vercel.app/",
+        "logo": "https://wefe.vercel.app/logo.png",
+        "image": "https://wefe.vercel.app/logo.png",
+        "email": "wefe.info@gmail.com",
+        "description": "Agencia de desarrollo web a medida en LATAM. Sistemas, apps móviles y e-commerce para empresas, universidades y gobierno.",
+        "priceRange": "$$",
+        "areaServed": [
+          { "@type": "Place", "name": "México" },
+          { "@type": "Place", "name": "Latinoamérica" }
+        ],
+        "serviceType": [
+          "Desarrollo de software a medida",
+          "Desarrollo de aplicaciones móviles",
+          "Desarrollo de e-commerce",
+          "Asesoría técnica"
+        ],
+        "knowsAbout": [
+          "React",
+          "Laravel",
+          "Flutter",
+          "PostgreSQL",
+          "Java",
+          "Tailwind CSS"
+        ]
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>

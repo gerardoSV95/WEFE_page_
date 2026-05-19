@@ -721,6 +721,60 @@ p {
 }
 
 /* ============================================================
+   Client logos strip
+   ============================================================ */
+.client-logos {
+  padding: clamp(2rem, 4vw, 3rem) 0;
+  background-color: var(--white-color);
+  border-top: 1px solid var(--gray-color);
+  border-bottom: 1px solid var(--gray-color);
+}
+.client-logos-label {
+  text-align: center;
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gray-dark-color);
+  margin: 0 0 1.25rem;
+}
+.client-logos-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(1.5rem, 5vw, 3.5rem);
+}
+.client-logos-list li {
+  font-family: inherit;
+  font-weight: 600;
+  color: var(--second-color);
+  opacity: 0.85;
+  letter-spacing: 0.02em;
+  transition: opacity 0.3s var(--ease-out);
+}
+.client-logos-list li:hover {
+  opacity: 1;
+}
+.client-logo-short {
+  font-size: clamp(1.1rem, 2vw, 1.35rem);
+}
+.client-logo-full {
+  display: none;
+}
+@media (min-width: 1024px) {
+  .client-logo-short {
+    display: none;
+  }
+  .client-logo-full {
+    display: inline;
+    font-size: 1rem;
+  }
+}
+
+/* ============================================================
    Portfolio
    ============================================================ */
 .portfolio-card {
@@ -859,6 +913,78 @@ p {
   .portfolio .grid-12 > .portfolio-card {
     grid-column: span 6;
   }
+}
+
+/* ============================================================
+   FAQ
+   ============================================================ */
+.faq-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-width: 56rem;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.faq-item {
+  background-color: var(--white-color);
+  border: 1px solid var(--gray-color);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: border-color 0.3s var(--ease-out),
+    box-shadow 0.3s var(--ease-out);
+}
+.faq-item.is-open {
+  border-color: var(--second-color);
+  box-shadow: var(--shadow-sm);
+}
+.faq-question {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.1rem 1.25rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font: inherit;
+  font-weight: 600;
+  font-size: clamp(0.95rem, 1.6vw, 1.05rem);
+  color: var(--second-color);
+}
+.faq-question:hover {
+  color: var(--first-color);
+}
+.faq-icon {
+  flex-shrink: 0;
+  width: 1.75rem;
+  height: 1.75rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: var(--gray-light-color);
+  font-size: 1.25rem;
+  font-weight: 400;
+  line-height: 1;
+  color: var(--second-color);
+}
+.faq-item.is-open .faq-icon {
+  background-color: var(--first-color);
+  color: var(--white-color);
+}
+.faq-answer {
+  padding: 0 1.25rem 1.1rem;
+  color: var(--text-color);
+  line-height: 1.6;
+  font-size: clamp(0.9rem, 1.5vw, 0.98rem);
+}
+.faq-answer p {
+  margin: 0;
 }
 
 /* ============================================================

@@ -3,27 +3,27 @@ import { useReveal } from '../hooks/useReveal';
 const steps = [
     {
         number: '01',
-        title: 'Discovery',
+        title: 'Entendemos',
         description:
-            'Entendemos tu negocio, tus usuarios y tus objetivos. Definimos métricas de éxito.',
+            'Conocemos tu negocio, tus usuarios y tus objetivos. Definimos métricas claras de éxito antes de escribir una línea de código.',
     },
     {
         number: '02',
-        title: 'Design',
+        title: 'Diseñamos',
         description:
-            'Diseñamos la experiencia y la arquitectura técnica. Prototipos navegables.',
+            'Trazamos la experiencia y la arquitectura técnica. Prototipos navegables para validar contigo antes de construir.',
     },
     {
         number: '03',
-        title: 'Build',
+        title: 'Construimos',
         description:
-            'Construimos en sprints cortos con entregas continuas. Calidad como default.',
+            'Desarrollamos en sprints cortos con entregas semanales. Ves el avance real, no slides de status.',
     },
     {
         number: '04',
-        title: 'Launch',
+        title: 'Lanzamos',
         description:
-            'Lanzamos, medimos y iteramos. Acompañamiento técnico post-lanzamiento.',
+            'Publicamos, medimos resultados e iteramos. Acompañamiento técnico después del lanzamiento.',
     },
 ];
 
@@ -41,8 +41,9 @@ const Process = () => {
                     <span className="eyebrow">Proceso</span>
                     <h2>Cómo trabajamos contigo.</h2>
                     <p>
-                        Un proceso claro y predecible, con comunicación constante
-                        y entregas que podés ver desde la primera semana.
+                        Un proceso claro y predecible, con comunicación
+                        constante y entregas que puedes ver desde la primera
+                        semana.
                     </p>
                 </div>
                 <div className="grid-12">

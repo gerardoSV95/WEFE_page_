@@ -32,9 +32,9 @@ const About = () => {
                     <span className="eyebrow">Acerca</span>
                     <h2>Un equipo pequeño. Un compromiso grande.</h2>
                     <p className="about-intro">
-                        Cuando trabajás con W.E.F.E, hablás directamente con las
-                        personas que van a construir tu producto. Sin intermediarios,
-                        sin mensajes perdidos, sin sorpresas.
+                        Cuando trabajas con W.E.F.E hablas directamente con las
+                        personas que van a construir tu producto. Sin
+                        intermediarios, sin mensajes perdidos, sin sorpresas.
                     </p>
                 </div>
 
