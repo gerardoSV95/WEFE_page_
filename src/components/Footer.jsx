@@ -8,6 +8,7 @@ const quickLinks = [
     { href: '#servicios', label: 'Servicios' },
     { href: '#proceso', label: 'Proceso' },
     { href: '#portafolio', label: 'Portafolio' },
+    { href: '#faq', label: 'Preguntas frecuentes' },
     { href: '#contacto', label: 'Contacto' },
 ];
 
@@ -21,8 +22,9 @@ const Footer = () => {
                     <div className="col-span-5">
                         <div className="footer-brand-name">W.E.F.E</div>
                         <p>
-                            Consultora de desarrollo web. Construimos productos
-                            digitales medibles, escalables y bonitos.
+                            Agencia de desarrollo web a medida. Construimos
+                            productos digitales medibles, escalables y bien
+                            diseñados.
                         </p>
                         <a href="#contacto" className="btn-primary footer-cta">
                             Iniciar proyecto

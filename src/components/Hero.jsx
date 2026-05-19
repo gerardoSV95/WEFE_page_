@@ -17,9 +17,9 @@ const Hero = () => {
                             que tus clientes <span className="stroke">recordarán.</span>
                         </h1>
                         <p className="hero-subtitle">
-                            Somos un equipo pequeño y dedicado. Sin capas de gestión,
-                            sin juniors delegados — hablás directamente con quien
-                            construye tu producto, desde el día uno.
+                            Hablas directamente con quien diseña y programa tu
+                            producto. Cotización clara, entregas semanales y
+                            sin sorpresas al final del proyecto.
                         </p>
                         <div className="hero-ctas">
                             <a href="#contacto" className="btn-primary">
