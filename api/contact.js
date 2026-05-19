@@ -1,22 +1,20 @@
 /**
  * Vercel Serverless Function — /api/contact
  *
- * Proxies the contact form to formsubmit.co from the server side so the
- * browser never makes a cross-origin request (formsubmit.co does not send
- * reliable CORS headers from client-side fetches).
+ * Sends contact form submissions via Gmail SMTP using Nodemailer.
+ * No third-party form service — direct and reliable.
  *
- * Expected body (JSON): { name, email, subject, message }
- *
- * NOTE: formsubmit.co's /ajax/ endpoint does NOT accept application/json.
- * Must send as application/x-www-form-urlencoded.
+ * Required environment variables (set in Vercel → Project Settings → Env vars):
+ *   VITE_CONTACT_RECIPIENT  — Gmail address that sends and receives (wefe.info@gmail.com)
+ *   GMAIL_APP_PASSWORD      — 16-char App Password from Google Account → Security →
+ *                             2-Step Verification → App Passwords
  */
+import nodemailer from 'nodemailer';
+
 export default async function handler(req, res) {
     if (req.method !== 'POST') {
         return res.status(405).json({ error: 'Method not allowed' });
     }
-
-    const recipient =
-        process.env.VITE_CONTACT_RECIPIENT || 'wefe.info@gmail.com';
 
     const { name, email, subject, message } = req.body ?? {};
 
@@ -24,52 +22,47 @@ export default async function handler(req, res) {
         return res.status(400).json({ error: 'Campos requeridos faltantes.' });
     }
 
-    // formsubmit.co requires form-urlencoded, not JSON.
-    const params = new URLSearchParams({
-        name,
-        email,
-        subject: subject || '',
-        message,
-        _subject: `Nuevo contacto web · ${subject || 'Sin asunto'}`,
-        _template: 'table',
-        _captcha: 'false',
-    });
+    const recipient =
+        process.env.VITE_CONTACT_RECIPIENT || 'wefe.info@gmail.com';
+    const appPassword = process.env.GMAIL_APP_PASSWORD;
 
-    try {
-        const upstream = await fetch(
-            `https://formsubmit.co/ajax/${recipient}`,
-            {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                    Accept: 'application/json',
-                    // Identify the request origin so formsubmit.co can
-                    // associate the submission with the correct domain and
-                    // trigger the one-time activation email.
-                    Origin: 'https://wefe-page.vercel.app',
-                    Referer: 'https://wefe-page.vercel.app/',
-                },
-                body: params.toString(),
-            },
-        );
-
-        // 403 from formsubmit.co usually means the email hasn't been
-        // activated yet. The first submission triggers the activation email —
-        // tell the user to check their inbox.
-        if (upstream.status === 403) {
-            return res.status(200).json({
-                success: false,
-                activation: true,
-                message:
-                    'Revisa la bandeja de wefe.info@gmail.com: formsubmit.co enviará un correo de activación. Haz clic en el enlace y vuelve a intentarlo.',
-            });
-        }
-
-        const data = await upstream.json().catch(() => ({}));
-        return res.status(upstream.ok ? 200 : upstream.status).json(data);
-    } catch (err) {
+    if (!appPassword) {
+        console.error('GMAIL_APP_PASSWORD env var is not set');
         return res
             .status(500)
-            .json({ error: err.message || 'Error interno del servidor.' });
+            .json({ error: 'Configuración de email incompleta en el servidor.' });
+    }
+
+    const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: { user: recipient, pass: appPassword },
+    });
+
+    // Sanitize inputs to avoid HTML injection in the email body.
+    const esc = (str) =>
+        String(str ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+    try {
+        await transporter.sendMail({
+            from: `"WEFE Contacto" <${recipient}>`,
+            to: recipient,
+            replyTo: `"${esc(name)}" <${esc(email)}>`,
+            subject: `Nuevo contacto web · ${esc(subject) || 'Sin asunto'}`,
+            html: `
+                <table cellpadding="8" style="border-collapse:collapse;font-family:sans-serif;font-size:15px;">
+                    <tr><td style="color:#555;width:100px"><strong>Nombre</strong></td><td>${esc(name)}</td></tr>
+                    <tr><td style="color:#555"><strong>Email</strong></td><td><a href="mailto:${esc(email)}">${esc(email)}</a></td></tr>
+                    <tr><td style="color:#555"><strong>Asunto</strong></td><td>${esc(subject) || '—'}</td></tr>
+                    <tr><td style="color:#555;vertical-align:top"><strong>Mensaje</strong></td><td style="white-space:pre-wrap">${esc(message)}</td></tr>
+                </table>
+            `,
+        });
+
+        return res.status(200).json({ success: true });
+    } catch (err) {
+        console.error('nodemailer error:', err);
+        return res
+            .status(500)
+            .json({ error: 'No se pudo enviar el email. Intenta nuevamente.' });
     }
 }
