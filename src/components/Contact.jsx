@@ -3,12 +3,17 @@ import { useReveal } from '../hooks/useReveal';
 
 const CONTACT_RECIPIENT =
     import.meta.env.VITE_CONTACT_RECIPIENT || 'wefe.info@gmail.com';
+// In production use the direct formsubmit.co URL.
 // In local dev, route through the Vite proxy (/formsubmit → formsubmit.co)
 // so the browser never makes a cross-origin request and CORS is a non-issue.
-// In production the direct URL is used — Vite proxy doesn't exist there.
 const CONTACT_ENDPOINT = import.meta.env.DEV
     ? `/formsubmit/ajax/${CONTACT_RECIPIENT}`
     : `https://formsubmit.co/ajax/${CONTACT_RECIPIENT}`;
+
+// Set VITE_CONTACT_MOCK=true in .env.local to skip the real network call
+// and simulate a successful submission — useful when formsubmit.co is
+// unreachable or during pure UI testing.
+const CONTACT_MOCK = import.meta.env.VITE_CONTACT_MOCK === 'true';
 
 const INITIAL_FORM = {
     name: '',
@@ -38,6 +43,19 @@ const Contact = () => {
         e.preventDefault();
         setIsLoading(true);
         setResponse(null);
+
+        // Mock mode: skip the network call, simulate a 1.2 s round-trip.
+        if (CONTACT_MOCK) {
+            await new Promise((r) => setTimeout(r, 1200));
+            setResponse({
+                type: 'success',
+                message:
+                    '¡Gracias! Tu mensaje fue enviado. Te respondemos en menos de 24 horas.',
+            });
+            setFormData(INITIAL_FORM);
+            setIsLoading(false);
+            return;
+        }
 
         try {
             const payload = new FormData(e.target);
