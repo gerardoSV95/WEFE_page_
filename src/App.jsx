@@ -1,4 +1,5 @@
 import './App.css';
+import { Toaster } from 'sonner';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import ClientLogos from './components/ClientLogos';
@@ -27,6 +28,11 @@ function App() {
                 <Contact />
             </main>
             <Footer />
+            <Toaster
+                position="bottom-right"
+                richColors
+                toastOptions={{ duration: 5000 }}
+            />
         </>
     );
 }

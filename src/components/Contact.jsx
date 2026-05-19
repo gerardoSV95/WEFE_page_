@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { toast } from 'sonner';
 import { useReveal } from '../hooks/useReveal';
 
 // Set VITE_CONTACT_MOCK=true in .env.local to skip the real network call
@@ -22,7 +23,6 @@ const Contact = () => {
     const { ref, isVisible } = useReveal();
     const [formData, setFormData] = useState(INITIAL_FORM);
     const [isLoading, setIsLoading] = useState(false);
-    const [response, setResponse] = useState(null);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -32,24 +32,17 @@ const Contact = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setIsLoading(true);
-        setResponse(null);
 
         // Mock mode: skip the network call, simulate a 1.2 s round-trip.
         if (CONTACT_MOCK) {
             await new Promise((r) => setTimeout(r, 1200));
-            setResponse({
-                type: 'success',
-                message:
-                    '¡Gracias! Tu mensaje fue enviado. Te respondemos en menos de 24 horas.',
-            });
+            toast.success('¡Mensaje enviado! Te respondemos en menos de 24 horas.');
             setFormData(INITIAL_FORM);
             setIsLoading(false);
             return;
         }
 
         try {
-            // /api/contact is a Vercel serverless function that proxies to
-            // formsubmit.co server-side, avoiding browser CORS restrictions.
             const res = await fetch('/api/contact', {
                 method: 'POST',
                 headers: {
@@ -61,19 +54,10 @@ const Contact = () => {
 
             if (!res.ok) throw new Error(`Error ${res.status}`);
 
-            setResponse({
-                type: 'success',
-                message:
-                    '¡Gracias! Tu mensaje fue enviado. Te respondemos en menos de 24 horas.',
-            });
+            toast.success('¡Mensaje enviado! Te respondemos en menos de 24 horas.');
             setFormData(INITIAL_FORM);
         } catch (err) {
-            setResponse({
-                type: 'error',
-                message:
-                    err.message ||
-                    'Ocurrió un error al enviar, intenta nuevamente.',
-            });
+            toast.error(err.message || 'No se pudo enviar el mensaje, intenta nuevamente.');
         } finally {
             setIsLoading(false);
         }
@@ -196,15 +180,7 @@ const Contact = () => {
                             {!isLoading && <span aria-hidden="true">→</span>}
                         </button>
 
-                        {response && (
-                            <p
-                                className={`contact-form-response ${response.type}`}
-                                role="status"
-                                aria-live="polite"
-                            >
-                                {response.message}
-                            </p>
-                        )}
+
                     </form>
                 </div>
             </div>
