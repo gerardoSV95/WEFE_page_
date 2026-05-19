@@ -61,6 +61,21 @@ const services = [
             </svg>
         ),
     },
+    {
+        title: 'Customer Success y Adopción',
+        benefit:
+            'Que la plataforma se use de verdad — no que junte polvo después del lanzamiento.',
+        deliverables: [
+            'Plan de adopción con métricas claras',
+            'Capacitación de tu equipo interno',
+            'Seguimiento trimestral con reportes de uso',
+        ],
+        icon: (
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24">
+                <path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6h-6z" />
+            </svg>
+        ),
+    },
 ];
 
 const Services = () => {
@@ -77,9 +92,9 @@ const Services = () => {
                     <span className="eyebrow">Servicios</span>
                     <h2>En qué te podemos ayudar.</h2>
                     <p>
-                        Cuatro áreas donde tenemos la experiencia técnica para
-                        acompañarte — desde la primera conversación hasta el
-                        lanzamiento.
+                        Cinco áreas donde tenemos la experiencia para
+                        acompañarte — desde la primera conversación hasta que
+                        tu producto esté en uso real.
                     </p>
                 </div>
                 <div className="grid-12">

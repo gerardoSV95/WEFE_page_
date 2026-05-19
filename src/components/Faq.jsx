@@ -16,11 +16,11 @@ const faqs = [
     },
     {
         q: '¿Qué pasa después del lanzamiento?',
-        a: 'No desaparecemos. Incluimos un período de garantía sobre lo construido y ofrecemos paquetes de soporte y evolución mensual para que tu producto siga creciendo. La decisión de seguir con nosotros es tuya, no estás amarrado a un contrato a largo plazo.',
+        a: 'No desaparecemos. Incluimos un período de garantía sobre lo construido, y nuestro equipo de Customer Success se asegura de que el producto se adopte: capacitación del equipo del cliente, métricas de uso y revisiones trimestrales. La decisión de seguir con nosotros es tuya, no estás amarrado a un contrato a largo plazo.',
     },
     {
         q: '¿Atienden clientes fuera de México?',
-        a: 'Sí. Trabajamos en remoto con clientes de toda Latinoamérica y también con clientes en habla hispana de Estados Unidos. Coordinamos en tu zona horaria y la comunicación es directa con quien construye tu producto.',
+        a: 'Sí. Trabajamos en remoto con clientes de toda Latinoamérica y también con clientes de habla hispana en Estados Unidos. Coordinamos en tu zona horaria y tienes un PM dedicado como punto de contacto único, con los desarrolladores accesibles cuando hace falta.',
     },
     {
         q: '¿Quién es dueño del código?',

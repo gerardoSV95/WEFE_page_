@@ -2,9 +2,9 @@ import { useReveal } from '../hooks/useReveal';
 
 const cards = [
     {
-        title: 'Hablas con quien construye',
+        title: 'Un dueño del proyecto, no un intermediario',
         description:
-            'Sin PMs intermediando, sin cuentas, sin trabajo delegado a juniors. La persona que te cotiza es la misma que diseña, programa y te entrega. Comunicación directa por defecto.',
+            'Tu primer contacto es un Project Manager dedicado con metodología sólida de Customer Success. Coordina entre tu negocio y los desarrolladores, traduce requerimientos a tareas concretas y mide adopción real — no solo entrega.',
     },
     {
         title: 'Cotización cerrada, sin sorpresas',
