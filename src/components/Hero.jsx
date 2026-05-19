@@ -18,9 +18,10 @@ const Hero = () => {
                             <span className="stroke">gobierno.</span>
                         </h1>
                         <p className="hero-subtitle">
-                            Hablas directamente con quien diseña y programa tu
-                            producto. Cotización clara, entregas semanales y
-                            sin sorpresas al final del proyecto.
+                            Un PM dedicado coordina, los desarrolladores
+                            construyen y tú ves avance real cada semana.
+                            Cotización clara desde el día uno, sin sorpresas
+                            al final del proyecto.
                         </p>
                         <div className="hero-ctas">
                             <a href="#contacto" className="btn-primary">

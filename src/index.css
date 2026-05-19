@@ -697,6 +697,16 @@ p {
   .services .grid-12 > .service-card {
     grid-column: span 6;
   }
+  /* 5 cards en tablet = 2 + 2 + 1. Centramos la huérfana. */
+  .services .grid-12 > .service-card:nth-child(5):last-child {
+    grid-column: 4 / span 6;
+  }
+}
+@media (min-width: 1024px) {
+  /* 5 cards en desktop con col-span-3 = 4 + 1. Centramos la huérfana. */
+  .services .grid-12 > .service-card:nth-child(5):last-child {
+    grid-column: 5 / span 4;
+  }
 }
 
 /* ============================================================
