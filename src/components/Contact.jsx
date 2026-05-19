@@ -1,8 +1,19 @@
 import { useState } from 'react';
 import { useReveal } from '../hooks/useReveal';
 
-const CONTACT_RECIPIENT = import.meta.env.VITE_CONTACT_RECIPIENT || 'wefe.info@gmail.com';
-const CONTACT_ENDPOINT = `https://formsubmit.co/ajax/${CONTACT_RECIPIENT}`;
+const CONTACT_RECIPIENT =
+    import.meta.env.VITE_CONTACT_RECIPIENT || 'wefe.info@gmail.com';
+// In production use the direct formsubmit.co URL.
+// In local dev, route through the Vite proxy (/formsubmit → formsubmit.co)
+// so the browser never makes a cross-origin request and CORS is a non-issue.
+const CONTACT_ENDPOINT = import.meta.env.DEV
+    ? `/formsubmit/ajax/${CONTACT_RECIPIENT}`
+    : `https://formsubmit.co/ajax/${CONTACT_RECIPIENT}`;
+
+// Set VITE_CONTACT_MOCK=true in .env.local to skip the real network call
+// and simulate a successful submission — useful when formsubmit.co is
+// unreachable or during pure UI testing.
+const CONTACT_MOCK = import.meta.env.VITE_CONTACT_MOCK === 'true';
 
 const INITIAL_FORM = {
     name: '',
@@ -33,22 +44,53 @@ const Contact = () => {
         setIsLoading(true);
         setResponse(null);
 
+        // Mock mode: skip the network call, simulate a 1.2 s round-trip.
+        if (CONTACT_MOCK) {
+            await new Promise((r) => setTimeout(r, 1200));
+            setResponse({
+                type: 'success',
+                message:
+                    '¡Gracias! Tu mensaje fue enviado. Te respondemos en menos de 24 horas.',
+            });
+            setFormData(INITIAL_FORM);
+            setIsLoading(false);
+            return;
+        }
+
         try {
+            const payload = new FormData(e.target);
+            // Control fields para formsubmit.co.
+            // Sobrescribimos cualquier valor accidental con append para
+            // garantizar que estos lleguen siempre.
+            payload.set(
+                '_subject',
+                `Nuevo contacto web · ${formData.subject || 'Sin asunto'}`,
+            );
+            payload.set('_template', 'table');
+            payload.set('_captcha', 'false');
+            // Honeypot ya viene incluido en el form (campo _honey).
+
             const res = await fetch(CONTACT_ENDPOINT, {
                 method: 'POST',
                 headers: { Accept: 'application/json' },
-                body: new FormData(e.target),
+                body: payload,
             });
 
             if (!res.ok) throw new Error(`Error ${res.status}`);
 
             await res.json();
-            setResponse({ type: 'success', message: '¡Gracias! Tu mensaje fue enviado.' });
+            setResponse({
+                type: 'success',
+                message:
+                    '¡Gracias! Tu mensaje fue enviado. Te respondemos en menos de 24 horas.',
+            });
             setFormData(INITIAL_FORM);
         } catch (err) {
             setResponse({
                 type: 'error',
-                message: err.message || 'Ocurrió un error al enviar, intenta nuevamente.',
+                message:
+                    err.message ||
+                    'Ocurrió un error al enviar, intenta nuevamente.',
             });
         } finally {
             setIsLoading(false);
@@ -70,7 +112,9 @@ const Contact = () => {
                         </div>
                         <h3>Email</h3>
                         <p>
-                            <a href="mailto:wefe.info@gmail.com">wefe.info@gmail.com</a>
+                            <a href="mailto:wefe.info@gmail.com">
+                                wefe.info@gmail.com
+                            </a>
                         </p>
                         <h3>Ubicación</h3>
                         <p>Remoto · LATAM</p>
@@ -93,24 +137,53 @@ const Contact = () => {
                     <form
                         className="contact-form col-span-7"
                         onSubmit={handleSubmit}
+                        noValidate
                     >
+                        {/* Honeypot: campo escondido. Los bots suelen llenarlo
+                            y formsubmit descarta la submission. Humanos no lo
+                            ven (sr-only + aria-hidden + tabIndex -1). */}
                         <input
+                            type="text"
+                            name="_honey"
+                            tabIndex="-1"
+                            autoComplete="off"
+                            className="honeypot"
+                            aria-hidden="true"
+                        />
+
+                        <label className="sr-only" htmlFor="contact-name">
+                            Nombre
+                        </label>
+                        <input
+                            id="contact-name"
                             type="text"
                             name="name"
                             placeholder="Nombre"
+                            autoComplete="name"
                             value={formData.name}
                             onChange={handleChange}
                             required
                         />
+
+                        <label className="sr-only" htmlFor="contact-email">
+                            Correo electrónico
+                        </label>
                         <input
+                            id="contact-email"
                             type="email"
                             name="email"
                             placeholder="Correo electrónico"
+                            autoComplete="email"
                             value={formData.email}
                             onChange={handleChange}
                             required
                         />
+
+                        <label className="sr-only" htmlFor="contact-subject">
+                            Asunto
+                        </label>
                         <input
+                            id="contact-subject"
                             type="text"
                             name="subject"
                             placeholder="Asunto"
@@ -118,14 +191,20 @@ const Contact = () => {
                             onChange={handleChange}
                             required
                         />
+
+                        <label className="sr-only" htmlFor="contact-message">
+                            Cuéntanos sobre tu proyecto
+                        </label>
                         <textarea
+                            id="contact-message"
                             name="message"
-                            placeholder="Cuéntanos sobre tu proyecto"
+                            placeholder="Cuéntanos: qué necesitas, idea de timeline y rango de presupuesto."
                             rows="6"
                             value={formData.message}
                             onChange={handleChange}
                             required
                         />
+
                         <button
                             type="submit"
                             className="btn-primary"
@@ -134,13 +213,12 @@ const Contact = () => {
                             {isLoading ? 'Enviando…' : 'Enviar mensaje'}
                             {!isLoading && <span aria-hidden="true">→</span>}
                         </button>
-                        {isLoading && (
-                            <p className="contact-form-loader">Enviando mensaje…</p>
-                        )}
+
                         {response && (
                             <p
                                 className={`contact-form-response ${response.type}`}
                                 role="status"
+                                aria-live="polite"
                             >
                                 {response.message}
                             </p>
